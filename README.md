@@ -10,3 +10,5 @@ Standardowe zlecenie zawiera takie informacje jak:
 - Opis nawiedzanego miejsca
 
 Wybrana technologia: Python
+
+[Jira](https://dcwiedzmin.atlassian.net/jira/software/projects/DC2137/boards/1)
