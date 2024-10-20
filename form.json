@@ -10,18 +10,18 @@
       "residence_details": {
         "name_of_location": "",
         "occupation": "",
-        "contact_address": {
-          "person": "",
-          "address": ""
-        }
+        "guild": "",
+        "contact_person": "",
+        "contact_address": ""
       }
     },
     "witcher": {
-      "name_or_alias": "",
+      "name": "",
       "school": ""
     },
     "contract_details": {
       "monster_species": "",
+      "monster_details": "",
       "operation_area": "",
       "previous_victims": {
         "killed": 0,
