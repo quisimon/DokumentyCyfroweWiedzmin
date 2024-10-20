@@ -1,0 +1,42 @@
+{
+  "witcher_contract": {
+    "date": "",
+    "location": "",
+    "contractor": {
+      "first_name": "",
+      "last_name": "",
+      "gender": "",
+      "place_of_residence": "",
+      "residence_details": {
+        "name_of_location": "",
+        "occupation": "",
+        "guild": "",
+        "contact_person": "",
+        "contact_address": ""
+      }
+    },
+    "witcher": {
+      "name": "",
+      "school": ""
+    },
+    "contract_details": {
+      "monster_species": "",
+      "monster_details": "",
+      "operation_area": "",
+      "previous_victims": {
+        "killed": 0,
+        "injured": 0
+      },
+      "additional_information": "",
+      "contract_amount": {
+        "currency": "",
+        "amount": 0,
+        "advance": 0
+      }
+    },
+    "signatures": {
+      "contractor": "",
+      "witcher": ""
+    }
+  }
+}

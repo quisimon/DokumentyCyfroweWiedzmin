@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umowa o Zlecenie Wiedźmińskie</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form id="contractForm">
+        <label>Data i miejscowość*:
+            <input type="text" id="dateAndPlace" required>
+        </label>
+
+        <h3>1. Dane zlecającego</h3>
+
+        <label>Imię*:
+            <input type="text" id="clientFirstName" required>
+        </label>
+
+        <label>Nazwisko*:
+            <input type="text" id="clientLastName" required>
+        </label>
+
+        <!-- Płeć section -->
+        <label>Płeć*:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="gender" value="Mężczyzna" required> Mężczyzna</label>
+            <label><input type="radio" name="gender" value="Kobieta" required> Kobieta</label>
+            <label><input type="radio" name="gender" value="Inna" required> Inna</label>
+        </div>
+
+        <!-- Miejsce zamieszkania section -->
+        <label>Miejsce zamieszkania*:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="residence" value="Miasto" required> Miasto</label>
+            <label><input type="radio" name="residence" value="Wieś" required> Wieś</label>
+        </div>
+
+        <div id="cityData" style="display:none;">
+            <h3>2A. Dane zlecającego – ciąg dalszy (miasto)</h3>
+            <label>Nazwa miasta*:
+                <input type="text" id="cityName" required>
+            </label>
+            <label>Adres (ulica, mieszkanie)*:
+                <input type="text" id="cityAddress" required>
+            </label>
+            <label>Zatrudnienie (opcjonalnie):
+                <input type="text" id="employment">
+            </label>
+            <label>Reprezentowany cech lub gildia (opcjonalnie):
+                <input type="text" id="guild">
+            </label>
+        </div>
+
+        <div id="villageData" style="display:none;">
+            <h3>2B. Dane zlecającego – ciąg dalszy (wieś)</h3>
+            <label>Nazwa wsi*:
+                <input type="text" id="villageName" required>
+            </label>
+            <label>Zajęcie (opcjonalnie):
+                <input type="text" id="occupation">
+            </label>
+            <label>Adres kontaktowy sołtysa lub lokalnego kapłana (opcjonalnie):
+                <input type="text" id="villageContact">
+            </label>
+        </div>
+
+        <h3>3. Dane wiedźmina</h3>
+
+        <label>Imię lub przydomek*:
+            <input type="text" id="witcherName" required>
+        </label>
+
+        <label>Szkoła wiedźmińska*:
+            <input type="text" id="witcherSchool" required>
+        </label>
+
+        <h3>4. Szczegóły zlecenia</h3>
+
+        <label>Gatunek potwora (jeśli zidentyfikowano):
+            <input type="text" id="monsterSpecies">
+        </label>
+
+        <label>Opis potwora (jeśli nie zidentyfikowano):
+            <textarea id="monsterDescription"></textarea>
+        </label>
+
+        <label>Obszar działania*:
+            <input type="text" id="operationArea" required>
+        </label>
+
+        <label>Dotychczasowe ofiary (opcjonalnie):
+            <textarea id="previousVictims"></textarea>
+        </label>
+
+        <label>Informacje dodatkowe (opcjonalnie):
+            <textarea id="additionalInfo"></textarea>
+        </label>
+
+        <label>Kwota zlecenia (w orenach, florenach bądź innej walucie)*:
+            <input type="text" id="paymentAmount" required>
+        </label>
+
+        <label>Zaliczka (opcjonalnie):
+            <input type="text" id="advancePayment">
+        </label>
+
+        <label>Podpis zlecającego*:
+            <input type="text" id="clientSignature" required>
+        </label>
+
+        <label>Podpis wiedźmina*:
+            <input type="text" id="witcherSignature" required>
+        </label>
+
+        <h3>5. Warunki umowy</h3>
+        <label>Typ umowy*:</label>
+        <div class="radio-group">
+            <label><input type="radio" name="contractType" value="Czas określony" required> Czas określony</label>
+            <label><input type="radio" name="contractType" value="Czas nieokreślony" required> Czas nieokreślony</label>
+        </div>
+
+        <div id="endDateContainer" style="display: none;">
+            <label>Data zakończenia umowy (opcjonalnie):
+                <input type="date" id="endDate">
+            </label>
+        </div>
+
+        <button type="button" id="submitBtn">Zapisz</button>
+    </form>
+
+    <script>
+        // Show/hide fields based on residence choice
+        document.querySelectorAll('input[name="residence"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.getElementById('cityData').style.display = this.value === 'Miasto' ? 'block' : 'none';
+                document.getElementById('villageData').style.display = this.value === 'Wieś' ? 'block' : 'none';
+            });
+        });
+
+        // Show/hide end date based on contract type
+        document.querySelectorAll('input[name="contractType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.getElementById('endDateContainer').style.display = this.value === 'Czas określony' ? 'block' : 'none';
+            });
+        });
+
+        // Function to gather form data and convert to JSON
+        function gatherFormData() {
+            const formData = {
+                dateAndPlace: document.getElementById('dateAndPlace').value,
+                client: {
+                    firstName: document.getElementById('clientFirstName').value,
+                    lastName: document.getElementById('clientLastName').value,
+                    gender: document.querySelector('input[name="gender"]:checked').value,
+                    residence: document.querySelector('input[name="residence"]:checked').value
+                },
+                witcher: {
+                    name: document.getElementById('witcherName').value,
+                    school: document.getElementById('witcherSchool').value
+                },
+                contract: {
+                    monsterSpecies: document.getElementById('monsterSpecies').value,
+                    monsterDescription: document.getElementById('monsterDescription').value,
+                    operationArea: document.getElementById('operationArea').value,
+                    previousVictims: document.getElementById('previousVictims').value,
+                    additionalInfo: document.getElementById('additionalInfo').value,
+                    paymentAmount: document.getElementById('paymentAmount').value,
+                    advancePayment: document.getElementById('advancePayment').value,
+                    endDate: document.getElementById('endDate') ? document.getElementById('endDate').value : null
+                },
+                signatures: {
+                    clientSignature: document.getElementById('clientSignature').value,
+                    witcherSignature: document.getElementById('witcherSignature').value
+                }
+            };
+            return JSON.stringify(formData, null, 2);
+        }
+
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const formDataJson = gatherFormData();
+            console.log(formDataJson); // For demonstration, log data to console
+            alert('Formularz został zapisany!');
+        });
+    </script>
+</body>
+</html>
