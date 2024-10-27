@@ -1,14 +1,12 @@
 import unittest
 
-from func.pdf_reader import read_pdf
+from func.pdf_reader import pdf_to_html
 
 
 class MyTestCase(unittest.TestCase):
-    def test_read_szablon(self):
+    def test_pdf_to_html(self):
         file_name = "../Szablon wypełniony.pdf"
-        read_pdf(file_name)
-        # self.assertEqual(True, True)  # add assertion here
-
+        pdf_to_html(file_name,"output.html")
 
 if __name__ == '__main__':
     unittest.main()
