@@ -3,9 +3,6 @@ import xml.etree.ElementTree as ET
 
 from pdfminer.high_level import extract_text
 
-PLACEHOLDER = ""
-
-
 def read_pdf(file_name):
     text = extract_text(file_name).split("\n")
     text: list[str] = list(filter(lambda x: x != "" and x != ' ', text))
