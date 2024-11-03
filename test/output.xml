@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<umowa_o_zlecenie>
+    <data_i_miejscowość required="true"></data_i_miejscowość>
+    <dane_zlecającego>
+        <imię required="true"></imię>
+        <nazwisko required="true"></nazwisko>
+        <płeć required="true">
+            <mężczyzna></mężczyzna>
+            <kobieta></kobieta>
+            <inna></inna>
+        </płeć>
+        <mężczyzna></mężczyzna>
+        <kobieta></kobieta>
+        <inna></inna>
+        <miejsce_zamieszkania required="true"></miejsce_zamieszkania>
+        <miasto></miasto>
+        <wieś></wieś>
+    </dane_zlecającego>
+    <dane_zlecającego_miasto>
+        <nazwa_miasta required="true"></nazwa_miasta>
+        <adres>
+            <ulica></ulica>
+            <mieszkanie></mieszkanie>
+        </adres>
+        <zatrudnienie></zatrudnienie>
+        <reprezentowany_cech_lub_gildia></reprezentowany_cech_lub_gildia>
+    </dane_zlecającego_miasto>
+    <dane_zlecającego_wieś>
+        <nazwa_wsi required="true"></nazwa_wsi>
+        <zajęcie></zajęcie>
+        <adres_kontaktowy_sołtysa_lub_lokalnego_kapłana></adres_kontaktowy_sołtysa_lub_lokalnego_kapłana>
+    </dane_zlecającego_wieś>
+    <dane_wiedźmina>
+        <imię_lub_przydomek required="true"></imię_lub_przydomek>
+        <szkoła_wiedźmińska required="true"></szkoła_wiedźmińska>
+    </dane_wiedźmina>
+    <szczegóły_zlecenia>
+        <gatunek_potwora identified="true"></gatunek_potwora>
+        <opis_potwora identified="false"></opis_potwora>
+        <obszar_działania required="true"></obszar_działania>
+        <dotychczasowe_ofiary></dotychczasowe_ofiary>
+        <informacje_dodatkowe></informacje_dodatkowe>
+        <kwota_zlecenia required="true">
+            <waluta></waluta>
+            <kwota></kwota>
+        </kwota_zlecenia>
+        <zaliczka></zaliczka>
+        <podpis_zlecającego required="true"></podpis_zlecającego>
+        <podpis_wiedźmina required="true"></podpis_wiedźmina>
+    </szczegóły_zlecenia>
+</umowa_o_zlecenie>

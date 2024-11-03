@@ -1,2 +1,2 @@
 pydrive2
-PyMuPDF
+pdfminer.six

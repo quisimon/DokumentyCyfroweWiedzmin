@@ -1,12 +1,13 @@
 import unittest
 
-from func.pdf_reader import pdf_to_html
+from func.pdf_reader import read_pdf
 
 
 class MyTestCase(unittest.TestCase):
     def test_pdf_to_html(self):
-        file_name = "../Szablon wypełniony.pdf"
-        pdf_to_html(file_name,"output.html")
+        file_name = "../Szablon-obowiazkowe-opcjonalne.pdf"
+        jsonn = read_pdf(file_name)
+        print(jsonn)
 
 if __name__ == '__main__':
     unittest.main()
