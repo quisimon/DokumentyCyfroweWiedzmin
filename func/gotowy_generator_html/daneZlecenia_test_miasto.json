@@ -1,0 +1,40 @@
+{
+  "witcher_contract": {
+    "date_and_location": "Sztygary, 20.06.1444",
+    "contractor": {
+      "first_name": "Foltest",
+      "last_name": "Syn Menela",
+      "gender": "mężczyzna",
+      "place_of_residence": "Miasto",
+      "residence_details": {
+        "name_of_location": "Nilfgard",
+        "contact_address": {
+          "street": "Baronowa",
+          "house_number": "13"
+        },
+        "occupation": "Kupiec",
+        "guild": "Cech Kota"
+      }
+    },
+    "witcher": {
+      "name": "Lambert",
+      "school": "Szkoła Wilka"
+    },
+    "contract_details": {
+      "monster_species": "Wiwerna",
+      "monster_details": "Czasem lata",
+      "operation_area": "Wzgórze przy wiosce",
+      "previous_victims": "12",
+      "additional_information": "Warto wygrać kuszę w karty przed walką",
+      "contract_amount": {
+        "currency": "Oreny",
+        "amount": 1500,
+        "advance": 600
+      }
+    },
+    "signatures": {
+      "contractor": "FoltestSynMenela",
+      "witcher": "LambertLambertTydobrykolego"
+    }
+  }
+}
