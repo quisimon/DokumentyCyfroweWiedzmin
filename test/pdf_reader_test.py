@@ -5,7 +5,7 @@ from func.pdf_reader import read_pdf
 
 class MyTestCase(unittest.TestCase):
     def test_pdf_to_html(self):
-        file_name = "../Szablon-obowiazkowe-opcjonalne.pdf"
+        file_name = "../Szablon.pdf"
         jsonn = read_pdf(file_name)
         print(jsonn)
 

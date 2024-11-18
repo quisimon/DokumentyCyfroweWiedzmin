@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8'?>
+<form>
+	<section section_id="1" section_name="Dane zlecającego">
+		<input_field field_name="Imię" required="true" />
+		<input_field field_name="Nazwisko" required="true" />
+		<radio_button name="Płeć (wybrać jedno)" required="true">
+			<option option_name="Mężczyzna" />
+			<option option_name="Kobieta" />
+			<option option_name="Inna" />
+		</radio_button>
+		<radio_button name="Miejsce zamieszkania (wybrać jedno)" required="true">
+			<option option_name="Miasto" />
+			<option option_name="Wieś" />
+		</radio_button>
+	</section>
+	<section section_id="2A" section_name="Dane zlecającego – ciąg dalszy (miasto)">
+		<input_field field_name="Nazwa miasta" required="true" />
+		<input_field field_name="Adres (ulica, mieszkanie)" required="true" />
+		<input_field field_name="Zatrudnienie" required="false" />
+		<input_field field_name="Reprezentowany cech lub gildia" required="false" />
+	</section>
+	<section section_id="2B" section_name="Dane zlecającego – ciąg dalszy (wieś)">
+		<input_field field_name="Nazwa wsi" required="true" />
+		<input_field field_name="Zajęcie" required="false" />
+		<input_field field_name="Adres kontaktowy sołtysa lub lokalnego kapłana" required="false" />
+	</section>
+	<section section_id="3" section_name="Dane wiedźmina">
+		<input_field field_name="Imię lub przydomek" required="true" />
+		<input_field field_name="Szkoła wiedźmińska" required="true" />
+	</section>
+	<section section_id="4" section_name="Szczegóły zlecenia">
+		<radio_button name="Czy zidentyfikowano potwora (wybrać jedno)" required="true">
+			<option option_name="Tak" />
+			<option option_name="Nie" />
+		</radio_button>
+		<input_field field_name="Obszar działania" required="true" />
+		<input_field field_name="Dotychczasowe ofiary" required="false" />
+		<input_field field_name="Informacje dodatkowe" required="false" />
+	</section>
+	<section section_id="5A" section_name="Szczegóły zlecenia – ciąg dalszy (potwór zidentyfikowany)">
+		<list name="Gatunek potwora (wybrać z listy)" required="true">
+			<list_option name="Baba" />
+			<list_option name="Bazyliszek" />
+			<list_option name="Bies" />
+			<list_option name="Duch" />
+			<list_option name="Ghul" />
+			<list_option name="Gryf" />
+			<list_option name="Kuchta" />
+			<list_option name="Leszy" />
+			<list_option name="Nekker" />
+			<list_option name="Troll" />
+			<list_option name="Utopiec" />
+			<list_option name="Wampir" />
+			<list_option name="Wilkołak" />
+		</list>
+	</section>
+	<section section_id="5B" section_name="Szczegóły zlecenia – ciąg dalszy (potwór niezidentyfikowany)">
+		<input_field field_name="Opis potwora" required="true" />
+	</section>
+	<section section_id="6" section_name="Zapłata">
+		<input_field field_name="Kwota zlecenia (w orenach, florenach bądź innej walucie)" required="true" />
+		<input_field field_name="Zaliczka (opcjonalnie)" required="false" />
+	</section>
+</form>

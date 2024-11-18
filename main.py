@@ -2,6 +2,7 @@ from threading import Thread
 
 from func.google_drive import upload_file
 import func.send_to_mail
+import func.pdf_reader
 
 
 if __name__ == '__main__':

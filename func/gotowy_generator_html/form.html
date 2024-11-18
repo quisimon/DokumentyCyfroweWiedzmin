@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang='pl'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>UMOWA O ZLECENIE WIEDŹMIŃSKIE</title>
+<style>
+label { display: block; margin: 5px 0; }
+input[type='text'], select, textarea { width: 100%; padding: 8px; margin: 5px 0; }
+.radio-group { display: flex; gap: 10px; margin: 10px 0; }
+#cityData, #villageData, #monsterDescription { display: none; }
+</style>
+</head>
+<body>
+<form id='contractForm'>
+<h1>UMOWA O ZLECENIE WIEDŹMIŃSKIE</h1>
+<label>Data i miejscowość*:</label><input type='text' name='data_i_miejscowość'>
+<h3>Dane zlecającego</h3>
+<label>Imię*:</label><input type='text' name='imię'>
+<label>Nazwisko*:</label><input type='text' name='nazwisko'>
+<label>Płeć*:</label>
+<input type='radio' name='płeć' value='mężczyzna'> Mężczyzna
+<input type='radio' name='płeć' value='kobieta'> Kobieta
+<input type='radio' name='płeć' value='inna'> Inna
+<label>Płeć*:</label>
+<label>Mężczyzna:</label><input type='text' name='mężczyzna'>
+<label>Kobieta:</label><input type='text' name='kobieta'>
+<label>Inna:</label><input type='text' name='inna'>
+<label>Mężczyzna:</label><input type='text' name='mężczyzna'>
+<label>Kobieta:</label><input type='text' name='kobieta'>
+<label>Inna:</label><input type='text' name='inna'>
+<label>Miejsce zamieszkania*:</label><input type='text' name='miejsce_zamieszkania'>
+<label><input type='radio' name='residence' value='Miasto'> Miasto</label>
+<label><input type='radio' name='residence' value='Wieś'> Wieś</label>
+<div id='cityData'>
+<h3>Dane zlecającego miasto</h3>
+<label>Nazwa miasta*:</label><input type='text' name='nazwa_miasta'>
+<label>Adres:</label>
+<label>Ulica:</label><input type='text' name='ulica'>
+<label>Mieszkanie:</label><input type='text' name='mieszkanie'>
+<label>Zatrudnienie:</label><input type='text' name='zatrudnienie'>
+<label>Reprezentowany cech lub gildia:</label><input type='text' name='reprezentowany_cech_lub_gildia'>
+</div>
+<div id='villageData'>
+<h3>Dane zlecającego wieś</h3>
+<label>Nazwa wsi*:</label><input type='text' name='nazwa_wsi'>
+<label>Zajęcie:</label><input type='text' name='zajęcie'>
+<label>Adres kontaktowy sołtysa lub lokalnego kapłana:</label><input type='text' name='adres_kontaktowy_sołtysa_lub_lokalnego_kapłana'>
+</div>
+<label>Dane wiedźmina:</label>
+<label>Imię lub przydomek*:</label><input type='text' name='imię_lub_przydomek'>
+<label>Szkoła wiedźmińska*:</label><input type='text' name='szkoła_wiedźmińska'>
+<label>Szczegóły zlecenia:</label>
+<label>Gatunek potwora:</label><input type='text' name='gatunek_potwora'>
+<label>Opis potwora:</label><input type='text' name='opis_potwora'>
+<label>Obszar działania*:</label><input type='text' name='obszar_działania'>
+<label>Dotychczasowe ofiary:</label><input type='text' name='dotychczasowe_ofiary'>
+<label>Informacje dodatkowe:</label><input type='text' name='informacje_dodatkowe'>
+<label>Kwota zlecenia*:</label>
+<input type='text' name='waluta' placeholder='Waluta'>
+<input type='text' name='kwota' placeholder='Kwota'>
+<label>Kwota zlecenia*:</label>
+<label>Waluta:</label><input type='text' name='waluta'>
+<label>Kwota:</label><input type='text' name='kwota'>
+<label>Zaliczka:</label><input type='text' name='zaliczka'>
+<label>Podpis zlecającego*:</label><input type='text' name='podpis_zlecającego'>
+<label>Podpis wiedźmina*:</label><input type='text' name='podpis_wiedźmina'>
+<button type='button' id='submitBtn'>Zapisz</button>
+</form>
+<script src='script_no_empty_fields.js'></script>
+</body>
+</html>

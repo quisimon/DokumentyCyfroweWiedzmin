@@ -7,77 +7,51 @@ def read_pdf(file_name):
     text = extract_text(file_name).split("\n")
     text: list[str] = list(filter(lambda x: x != "" and x != ' ', text))
     text = [re.sub(r"^\x0c+", "", item) for item in text]
-    root = ET.Element("umowa_o_zlecenie")
-    current_sub = root
-    for phrase in text[1:len(text) - 1]:
-        if phrase.strip().endswith("*:"):
-            new_phrase = phrase.strip().lower().replace(" (wybrać jedno)", "").replace("*:", "").replace(" ", "_")
-            if new_phrase.endswith("(ulica,_mieszkanie)"):
-                np = "adres"
-                element = ET.SubElement(current_sub, np)
-                street = ET.SubElement(element, "ulica")
-                local = ET.SubElement(element, "mieszkanie")
-                street.text = " "
-                local.text = " "
-                continue
-            elif new_phrase.endswith("płeć"):
-                np = "płeć"
-                element = ET.SubElement(current_sub, np, required="true")
-                man = ET.SubElement(element, "mężczyzna")
-                woman = ET.SubElement(element, "kobieta")
-                other = ET.SubElement(element, "inna")
-                man.text = " "
-                woman.text = " "
-                other.text = " "
-                continue
-            elif new_phrase.endswith("(w_orenach,_florenach_bądź_innej_walucie)"):
-                np = "kwota_zlecenia"
-                element = ET.SubElement(current_sub, np, required="true")
-                waluta = ET.SubElement(element, "waluta")
-                kwota = ET.SubElement(element, "kwota")
-                waluta.text = " "
-                kwota.text = " "
-                continue
-            elif new_phrase.endswith("(jeśli_zidentyfikowano)"):
-                np = "gatunek_potwora"
-                element = ET.SubElement(current_sub, np, identified="true")
-                element.text = " "
-                continue
-            elif new_phrase.endswith("(jeśli_nie_zidentyfikowano)"):
-                np = "opis_potwora"
-                element = ET.SubElement(current_sub, np, identified="false")
-                element.text = " "
-                continue
-            element = ET.SubElement(current_sub, new_phrase, required="true")
-            element.text = " "
-        elif phrase.strip()[0].isdigit():
-            np = re.sub(r"^\w+\.\s*", "", phrase).strip().lower().replace(" (wybrać jedno)", "").replace("*:",
-                                                                                                         "").replace(
-                " ", "_")
-            if np.endswith("(miasto)"):
-                np = "dane_zlecającego_miasto"
-            elif np.endswith("(wieś)"):
-                np = "dane_zlecającego_wieś"
-            element = ET.SubElement(root, np)
-            element.text = " "
-            current_sub = element
-        elif phrase.strip() == "* pola obowiązkowe":
-            continue
-        elif phrase.strip() == "Strona 1 z 2":
-            continue
-        elif phrase.strip() == "Strona 2 z 2":
-            continue
-        elif phrase.strip() == "mężczyzna" or phrase.strip() == "kobieta" or phrase.strip() == "inna":
-            continue
-        elif phrase.strip().startswith("Zaliczka"):
-            np = "zaliczka"
-            element = ET.SubElement(current_sub, np)
-            element.text = " "
-            continue
-        else:
-            new_phrase = phrase.strip().lower().replace(" (wybrać jedno)", "").replace(":", "").replace(" ", "_")
-            element = ET.SubElement(current_sub, new_phrase)
-            element.text = " "
 
+    root = ET.Element("form")
+    current_section = None
+    current_subelement = None
+    current_subelement_type = None
+
+    for phrase in text[1:len(text) - 1]:
+        if "." in phrase.strip():
+            section_id = phrase.split(". ")[0]
+            section_name = phrase.split(". ")[1]
+            section = ET.SubElement(root, "section", section_id=section_id, section_name=section_name)
+            current_section = section
+        elif "(wybrać jedno)" in phrase.strip():
+            if "*" in phrase.strip():
+                button_name = phrase.replace("*:", "")
+                required = "true"
+            else:
+                button_name = phrase.replace(":", "")
+                required = "false"
+            button = ET.SubElement(current_section, "radio_button", name=button_name, required=required)
+            current_subelement = button
+            current_subelement_type = "radio_button"
+        elif "(wybrać z listy)" in phrase.strip():
+            if "*" in phrase.strip():
+                button_name = phrase.replace("*:", "")
+                required = "true"
+            else:
+                button_name = phrase.replace(":", "")
+                required = "false"
+            button = ET.SubElement(current_section, "list", name=button_name, required=required)
+            current_subelement = button
+            current_subelement_type = "list"
+        elif phrase.strip()[0] == "–":
+            if current_subelement_type == "list":
+                ET.SubElement(current_subelement, "list_option", name=phrase.replace("– ", ""))
+            else:
+                ET.SubElement(current_subelement, "option", option_name=phrase.replace("– ", ""))
+        else:
+            if "*" in phrase.strip():
+                ET.SubElement(current_section, "input_field", field_name=phrase.replace("*:", ""), required="true")
+            else:
+                ET.SubElement(current_section, "input_field", field_name=phrase.replace(":", ""), required="false")
+                
     tree = ET.ElementTree(root)
+    ET.indent(tree, space="\t", level=0)
     tree.write("output.xml", encoding='utf-8', xml_declaration=True)
+
+
