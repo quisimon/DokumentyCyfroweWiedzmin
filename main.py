@@ -5,10 +5,12 @@ import func.gotowy_generator_html
 import func.gotowy_generator_html.xml_to_html_updated
 import func.send_to_mail
 import func.pdf_reader
+from func.xml_to_pdf import generate_pdf_with_json_data
+from func.form_data_to_json import save_form_data_to_json
 import flask
+from flask import send_from_directory
 
 import func.xml_to_html
-
 
 app = flask.Flask(__name__)
 app.secret_key = 'KanRedBes'
@@ -78,12 +80,20 @@ def handle_section(step):
     return flask.redirect(flask.url_for('handle_section', step=flask.session['next_section'])) 
 
 
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+
 @app.route('/summary')
 def summary():
     global form_data
-    print(form_data)
+    save_form_data_to_json(form_data, 'uploads/form_data.json')
+    generate_pdf_with_json_data('output.xml', form_data, 'uploads/output.pdf')
+
+    return flask.render_template('summary.html', pdf_url=flask.url_for('uploaded_file', filename='output.pdf'))
 
 app.run()
 
-# upload_file('example.json', 'example.json')
-# upload_file('example.pdf', 'example.pdf')
+#upload_file('example.json', 'example.json')
+#upload_file('example.pdf', 'example.pdf')
