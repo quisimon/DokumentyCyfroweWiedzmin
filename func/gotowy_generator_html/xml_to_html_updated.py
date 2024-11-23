@@ -99,6 +99,3 @@ def generate_html_form(xml_file, output_html_file):
     # Write the generated HTML to the output file
     with open(output_html_file, 'w', encoding='utf-8') as f:
         f.write("\n".join(html))
-
-# Call the function to generate the form
-generate_html_form('output.xml', 'form.html')

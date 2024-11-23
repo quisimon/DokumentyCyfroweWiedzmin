@@ -11,7 +11,7 @@ def generate_html_sections(xml_file):
         section_id = section.attrib.get("section_id", "")
         section_name = section.attrib.get("section_name", "")
 
-        html = [f"<div id='section_{section_id}'>", f"<h2>{section_name}</h2>", "<form>"]
+        html = [f"<div id='section_{section_id}'>", f"<h2>{section_name}</h2>", '<form method="post" enctype="multipart/form-data">']
 
         for element in section:
             if element.tag == "input_field":
@@ -59,9 +59,10 @@ def generate_html_sections(xml_file):
     return sections
 
 # Generate sections
-sections_html = generate_html_sections("output.xml")
+def generate_htmls_from_xml(xml_filename):
+    sections_html = generate_html_sections(xml_filename)
+    for i, section_html in enumerate(sections_html, 1):
+        with open(f"templates/section_{i}.html", "w", encoding="utf-8") as f:
+            f.write(section_html)
 
-# Save sections
-for i, section_html in enumerate(sections_html, 1):
-    with open(f"section_{i}.html", "w", encoding="utf-8") as f:
-        f.write(section_html)
+    return len(sections_html)
