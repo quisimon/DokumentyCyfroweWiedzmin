@@ -17,7 +17,7 @@ def generate_html_sections(xml_file):
             "<html>",
             "<head>",
             "<meta charset='utf-8'>",
-            "<link rel='stylesheet' type='text/css' href='../static/styles.css'>",
+            "<link rel='stylesheet' type='text/css' href='../../static/styles.css'>",
             f"<title>{section_name}</title>",
             "</head>",
             "<body>",
