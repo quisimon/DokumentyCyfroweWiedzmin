@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podsumowanie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Podsumowanie</h1>
+    <h2>Oto wygenerowany plik PDF:</h2>
+
+    <iframe src="{{ pdf_url }}" width="100%" height="600px" style="border: none;"></iframe>
+
+    <button>
+        <a href="{{ pdf_url }}" download class="download">Pobierz PDF</a>
+    </button>
+</body>
+</html>

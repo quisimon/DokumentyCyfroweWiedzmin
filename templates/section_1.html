@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<link rel='stylesheet' type='text/css' href='../../static/styles.css'>
+<title>Dane zlecającego</title>
+</head>
+<body>
+<div id='section_1' class='section'>
+<h2>Dane zlecającego</h2>
+<form method="post" enctype="multipart/form-data">
+<div class='form-group'><label>Imię*:</label><input type='text' name='Imię' required></div>
+<div class='form-group'><label>Nazwisko*:</label><input type='text' name='Nazwisko' required></div>
+<fieldset class='form-group'><legend>Płeć (wybrać jedno)*:</legend>
+<div><input type='radio' name='Płeć (wybrać jedno)' value='Mężczyzna' required> Mężczyzna</div>
+<div><input type='radio' name='Płeć (wybrać jedno)' value='Kobieta' required> Kobieta</div>
+<div><input type='radio' name='Płeć (wybrać jedno)' value='Inna' required> Inna</div>
+</fieldset>
+<fieldset class='form-group'><legend>Miejsce zamieszkania (wybrać jedno)*:</legend>
+<div><input type='radio' name='Miejsce zamieszkania (wybrać jedno)' value='Miasto' required> Miasto</div>
+<div><input type='radio' name='Miejsce zamieszkania (wybrać jedno)' value='Wieś' required> Wieś</div>
+</fieldset>
+<button type='submit'>Wyślij</button>
+</form>
+</div>
+</body>
+</html>

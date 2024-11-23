@@ -101,6 +101,13 @@ button:hover {
     background-color: #ffcc00;
 }
 
+.download {
+    color: #1c1c1c;
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    text-decoration: none;
+}
+
 /* Form Sections */
 h3 {
     border-bottom: 2px solid #d4af37;
