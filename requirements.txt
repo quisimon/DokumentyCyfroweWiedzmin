@@ -2,3 +2,4 @@ pydrive2
 pdfminer.six
 smtplib
 flask
+morfeusz2
