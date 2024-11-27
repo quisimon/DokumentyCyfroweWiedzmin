@@ -103,29 +103,38 @@ def handle_section(step):
     if flask.request.method == 'GET':
         if step == 2 and form_data[0]['Miejsce zamieszkania (wybrać jedno)'] == 'Wieś':
             flask.session['next_section'] = step + 1
-            camunda.complete_task_1(access_token, task_1_id, 0)
-            task_2_id = camunda.get_task_2(access_token, process_instance_key)
             return flask.redirect(flask.url_for('handle_section', step=flask.session['next_section'])) 
             
         if step == 3 and form_data[0]['Miejsce zamieszkania (wybrać jedno)'] == 'Miasto':
             flask.session['next_section'] = step + 1
-            camunda.complete_task_1(access_token, task_1_id, 1)
-            task_2_id = camunda.get_task_2(access_token, process_instance_key)
             return flask.redirect(flask.url_for('handle_section', step=flask.session['next_section'])) 
 
         if step == 6 and form_data[3]['Czy zidentyfikowano potwora (wybrać jedno)'] == 'Nie':
             flask.session['next_section'] = step + 1
-            camunda.complete_task_2(access_token, task_1_id, 0)
             return flask.redirect(flask.url_for('handle_section', step=flask.session['next_section'])) 
         
         if step == 7 and form_data[3]['Czy zidentyfikowano potwora (wybrać jedno)'] == 'Tak':
             flask.session['next_section'] = step + 1
-            camunda.complete_task_2(access_token, task_1_id, 1)
             return flask.redirect(flask.url_for('handle_section', step=flask.session['next_section'])) 
 
         return flask.render_template(f"section_{step}.html")
     
     form_data.append(flask.request.form.to_dict())
+
+    if step == 1 and form_data[0]['Miejsce zamieszkania (wybrać jedno)'] == 'Wieś':
+            camunda.complete_task_1(access_token, task_1_id, 0)
+            task_2_id = camunda.get_task_2(access_token, process_instance_key)
+
+    if step == 1 and form_data[0]['Miejsce zamieszkania (wybrać jedno)'] == 'Miasto':
+            camunda.complete_task_1(access_token, task_1_id, 1)
+            task_2_id = camunda.get_task_2(access_token, process_instance_key)
+
+    if step == 5 and form_data[3]['Czy zidentyfikowano potwora (wybrać jedno)'] == 'Nie':
+            camunda.complete_task_2(access_token, task_2_id, 0)
+
+    if step == 5 and form_data[3]['Czy zidentyfikowano potwora (wybrać jedno)'] == 'Tak':
+            camunda.complete_task_2(access_token, task_2_id, 1)
+
     flask.session['next_section'] = step + 1
     if flask.session['next_section'] > sections_count:
         return flask.redirect(flask.url_for('summary'))
