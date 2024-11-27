@@ -8,8 +8,8 @@ from datetime import datetime
 
 SMTP_HOST = 'smtp.gmail.com'
 SMTP_PORT = 587
-EMAIL_ADDRESS = 'kan.red.bes@gmail.com'
-EMAIL_PASSWORD = 'zaq1@WSX'
+EMAIL_ADDRESS = 'redukcjabestiiexpress@gmail.com'
+EMAIL_PASSWORD = 'dokcyfrowe123'
 BODY = 'W załączniku umieszczamy szczegóły Waszego zlecenia wiedźminskiego.\n\n' \
        'Z wyrazami szacunku\n' \
        'Kancelaria Redukcji Bestii'
