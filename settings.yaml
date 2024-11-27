@@ -1,0 +1,8 @@
+client_config_backend: file
+client_config_file: client_secret_999811097256-3h1l0pb0iu49vagj0k3o0gf02u7q027l.apps.googleusercontent.com.json
+
+save_credentials: True
+save_credentials_backend: file
+save_credentials_file: credentials.json
+
+get_refresh_token: True
